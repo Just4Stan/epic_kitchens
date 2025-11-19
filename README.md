@@ -2,34 +2,34 @@
 
 Deep learning models for egocentric action recognition on the EPIC-KITCHENS-100 dataset.
 
-## 🎯 Project Overview
+## Project Overview
 
 This project implements a **three-phase research approach** to action recognition:
 
-1. **Phase 1**: Architecture Comparison (✅ Completed)
-2. **Phase 2**: Hyperparameter Optimization (🔄 In Progress)
-3. **Phase 3**: Cross-Task Attention (⏳ Ready to Train)
+1. **Phase 1**: Architecture Comparison (Completed)
+2. **Phase 2**: Hyperparameter Optimization (In Progress)
+3. **Phase 3**: Cross-Task Attention (Ready to Train)
 
-## 📊 Current Status (2025-11-19)
+## Current Status (2025-11-19)
 
-### Phase 1: Architecture Comparison ✅
+### Phase 1: Architecture Comparison
 - **6 models trained** successfully on VSC cluster
 - Models: Baseline, LSTM, Transformer, 3D CNN, EfficientNet+LSTM, EfficientNet+Transformer
 - Training epochs: 20-35 depending on model
 - **Key Finding**: All models exhibit overfitting (~15% gap between train/val)
 
-### Phase 2: Hyperparameter Optimization 🔄
+### Phase 2: Hyperparameter Optimization
 - **3 out of 8 configurations** completed
 - Significant overfitting reduction: 15% → 5%
 - Best model: Config 1 (Val Acc: ~27%)
 - Remaining configs queued for training
 
-### Phase 3: Cross-Attention 📝
+### Phase 3: Cross-Attention
 - Model implemented with bidirectional verb-noun attention
 - Training script created
 - Awaiting Phase 2 completion for hyperparameter selection
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Training Locally
 
@@ -65,7 +65,7 @@ sbatch train_config1.slurm
 squeue -u $USER
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 epic_kitchens/
@@ -95,19 +95,19 @@ epic_kitchens/
 └── README.md                # This file
 ```
 
-## 📈 Results Summary
+## Results Summary
 
 | Phase | Model | Params | Val Verb Acc | Val Noun Acc | Overfitting Gap |
 |-------|-------|--------|--------------|--------------|-----------------|
 | 1 | Baseline | 25M | ~30% | ~25% | ~15% |
 | 1 | LSTM | 27M | ~32% | ~26% | ~16% |
 | 1 | Transformer | 30M | ~35% | ~28% | ~15% |
-| 2 | Improved | 25M | ~36% | ~19% | ~5% ✅ |
+| 2 | Improved | 25M | ~36% | ~19% | ~5% (Good) |
 | 3 | Cross-Attn | 26M | TBD | TBD | TBD |
 
 *Note: Phase 2 shows lower accuracy but much better generalization (reduced overfitting)*
 
-## 🎯 Key Features
+## Key Features
 
 ### Phase 1
 - Multiple architecture types (CNN, LSTM, Transformer, 3D CNN)
@@ -128,7 +128,7 @@ epic_kitchens/
 - **Bidirectional attention** for semantic dependencies
 - Maintains Phase 2 regularization strategies
 
-## 🔧 Configuration
+## Configuration
 
 Key hyperparameters in `common/config.py`:
 
@@ -141,13 +141,13 @@ NUM_VERB_CLASSES = 97     # EPIC-KITCHENS verbs
 NUM_NOUN_CLASSES = 300    # EPIC-KITCHENS nouns
 ```
 
-## 📚 Documentation
+## Documentation
 
 - **[ARCHITECTURE.md](docs/ARCHITECTURE.md)**: Detailed model architectures and design decisions
 - **[TRAINING_GUIDE.md](docs/TRAINING_GUIDE.md)**: Step-by-step training instructions
 - **[phase3/README.md](phase3/README.md)**: Cross-attention architecture details
 
-## 🛠️ Validation
+## Validation
 
 ```bash
 # Validate single model
@@ -159,11 +159,11 @@ python validate_models.py \
   --val_video_dir EPIC-KITCHENS/videos_640x360
 ```
 
-## 📊 VSC Cluster Training Status
+## VSC Cluster Training Status
 
 **Currently on VSC** (`/vsc-hard-mounts/leuven-data/380/vsc38064/epic_kitchens`):
 
-- ✅ Phase 1: All 6 models trained with checkpoints
+- Phase 1: All 6 models trained with checkpoints
   - `outputs/` (baseline, 25 epochs)
   - `outputs_lstm/` (25 epochs)
   - `outputs_transformer/` (35 epochs)
@@ -171,17 +171,17 @@ python validate_models.py \
   - `outputs_efficientnet_lstm/` (20 epochs)
   - `outputs_efficientnet_transformer/` (20 epochs)
 
-- 🔄 Phase 2: 3 models partially trained
+- Phase 2: 3 models partially trained
   - `outputs_model1/` (best_model.pth available)
   - `outputs_model2/` (best_model.pth available)
   - `outputs_model3/` (best_model.pth available)
   - `outputs_model4/` (incomplete)
 
-- ⏳ Phase 3: Ready to train once Phase 2 completes
+- Phase 3: Ready to train once Phase 2 completes
 
 **No jobs currently running** - ready for new submissions
 
-## 🎓 Dataset
+## Dataset
 
 **EPIC-KITCHENS-100**:
 - 67,217 training action segments
@@ -190,12 +190,12 @@ python validate_models.py \
 - Multi-task learning (verb + noun)
 - Download from: https://epic-kitchens.github.io/
 
-## 🔗 References
+## References
 
 - **Dataset**: Damen et al., "Rescaling Egocentric Vision" (IJCV 2022)
 - **Repo**: https://github.com/epic-kitchens/epic-kitchens-100-annotations
 
-## 📝 TODO
+## TODO
 
 - [ ] Complete Phase 2 hyperparameter sweep (5 configs remaining)
 - [ ] Analyze Phase 2 results and select best configuration
@@ -203,7 +203,7 @@ python validate_models.py \
 - [ ] Prepare final presentation with results comparison
 - [ ] Document final findings and insights
 
-## 👥 Development
+## Development
 
 This project was developed as part of computer vision research for action recognition in egocentric videos.
 

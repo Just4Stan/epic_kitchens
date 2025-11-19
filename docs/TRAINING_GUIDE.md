@@ -35,7 +35,7 @@ python train_lstm.py --epochs 30 --batch_size 32
 python train_transformer.py --epochs 30
 
 # 3D CNN
-python train_3dcnn.py --batch_size 16  # Smaller batch for memory
+python train_3dcnn.py --batch_size 16 # Smaller batch for memory
 
 # EfficientNet + LSTM
 python train_efficientnet_lstm.py
@@ -52,12 +52,12 @@ python train_improved.py --help
 
 # Train with specific configuration
 python train_improved.py \
-  --epochs 30 \
-  --batch_size 24 \
-  --lr 5e-5 \
-  --dropout 0.5 \
-  --label_smoothing 0.1 \
-  --output_dir outputs_model1
+--epochs 30 \
+--batch_size 24 \
+--lr 5e-5 \
+--dropout 0.5 \
+--label_smoothing 0.1 \
+--output_dir outputs_model1
 ```
 
 ### Phase 3: Cross-Attention
@@ -66,11 +66,11 @@ python train_improved.py \
 # Run from phase3 directory or root
 cd phase3
 python train_cross_attention.py \
-  --epochs 30 \
-  --batch_size 24 \
-  --lr 5e-5 \
-  --dropout 0.5 \
-  --output_dir outputs_cross_attention
+--epochs 30 \
+--batch_size 24 \
+--lr 5e-5 \
+--dropout 0.5 \
+--output_dir outputs_cross_attention
 ```
 
 ## Training on VSC Cluster
@@ -115,7 +115,7 @@ sbatch train_config1.slurm
 
 # Submit all configurations
 for i in {1..8}; do
-  sbatch train_config${i}.slurm
+sbatch train_config${i}.slurm
 done
 ```
 
@@ -151,9 +151,9 @@ scancel <job_id>
 ```bash
 # On specific checkpoint
 python validate_vsc.py \
-  --checkpoint outputs/checkpoints/best_model.pth \
-  --val_csv EPIC_100_validation.csv \
-  --val_video_dir EPIC-KITCHENS/videos_640x360
+--checkpoint outputs/checkpoints/best_model.pth \
+--val_csv EPIC_100_validation.csv \
+--val_video_dir EPIC-KITCHENS/videos_640x360
 ```
 
 ### Validate All Models
@@ -161,9 +161,9 @@ python validate_vsc.py \
 ```bash
 # Batch validation
 python validate_models.py \
-  --val_csv EPIC_100_validation.csv \
-  --val_video_dir EPIC-KITCHENS/videos_640x360 \
-  --output_file validation_results.json
+--val_csv EPIC_100_validation.csv \
+--val_video_dir EPIC-KITCHENS/videos_640x360 \
+--output_file validation_results.json
 ```
 
 ### Validation Scripts
@@ -179,22 +179,22 @@ Edit `common/config.py` to modify:
 
 ```python
 class Config:
-    # Paths
-    DATA_DIR = Path('EPIC-KITCHENS')
-    OUTPUT_DIR = Path('outputs')
+# Paths
+DATA_DIR = Path('EPIC-KITCHENS')
+OUTPUT_DIR = Path('outputs')
 
-    # Model
-    NUM_FRAMES = 16
-    IMAGE_SIZE = 224
+# Model
+NUM_FRAMES = 16
+IMAGE_SIZE = 224
 
-    # Training
-    BATCH_SIZE = 32
-    EPOCHS = 30
-    LEARNING_RATE = 1e-4
+# Training
+BATCH_SIZE = 32
+EPOCHS = 30
+LEARNING_RATE = 1e-4
 
-    # Dataset
-    NUM_VERB_CLASSES = 97
-    NUM_NOUN_CLASSES = 300
+# Dataset
+NUM_VERB_CLASSES = 97
+NUM_NOUN_CLASSES = 300
 ```
 
 ## SLURM Template
@@ -220,11 +220,11 @@ module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
 # Run training
 cd $VSC_DATA/epic_kitchens
 python train_improved.py \
-  --epochs 30 \
-  --batch_size 24 \
-  --lr 5e-5 \
-  --dropout 0.5 \
-  --output_dir outputs_experiment
+--epochs 30 \
+--batch_size 24 \
+--lr 5e-5 \
+--dropout 0.5 \
+--output_dir outputs_experiment
 ```
 
 ## Troubleshooting
@@ -233,7 +233,7 @@ python train_improved.py \
 
 ```python
 # Reduce batch size
---batch_size 16  # or even 8
+--batch_size 16 # or even 8
 
 # Reduce number of frames
 # Edit config.py: NUM_FRAMES = 8
@@ -307,7 +307,7 @@ import matplotlib.pyplot as plt
 
 # Load history
 with open('outputs/training_history.json') as f:
-    history = json.load(f)
+history = json.load(f)
 
 # Plot training curves
 plt.plot(history['train_acc'], label='Train')

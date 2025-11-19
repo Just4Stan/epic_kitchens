@@ -1,6 +1,6 @@
 # GitHub Repository Setup - Using GitHub Desktop
 
-## ✅ Your Repository is Ready!
+## Your Repository is Ready!
 
 **Location**: `/Users/stan/Downloads/RDLAB/epic_kitchens`
 **Branch**: `main`
@@ -19,37 +19,37 @@
 ### Step 2: Add Your Local Repository
 
 1. In GitHub Desktop, click **File** → **Add Local Repository**
-   - Or use keyboard shortcut: `Cmd + O` (macOS)
+- Or use keyboard shortcut: `Cmd + O` (macOS)
 
 2. Click **Choose...** and navigate to:
-   ```
-   /Users/stan/Downloads/RDLAB/epic_kitchens
-   ```
+```
+/Users/stan/Downloads/RDLAB/epic_kitchens
+```
 
 3. Click **Add Repository**
 
 ### Step 3: Publish to GitHub
 
 1. You should see your repository with **2 commits**:
-   - `Refactor codebase to phase-based architecture`
-   - `Add GitHub repository setup instructions`
+- `Refactor codebase to phase-based architecture`
+- `Add GitHub repository setup instructions`
 
 2. Click the **Publish repository** button (top right)
 
 3. In the dialog that appears:
-   - **Name**: `epic-kitchens-action-recognition`
-   - **Description**: `Multi-phase action recognition on EPIC-KITCHENS-100 dataset`
-   - **Keep this code private**: ✅ Check this box (recommended)
-   - **Organization**: Leave as your personal account (or select team org if available)
+- **Name**: `epic-kitchens-action-recognition`
+- **Description**: `Multi-phase action recognition on EPIC-KITCHENS-100 dataset`
+- **Keep this code private**: Check this box (recommended)
+- **Organization**: Leave as your personal account (or select team org if available)
 
 4. Click **Publish Repository**
 
 ### Step 4: Verify Upload
 
 GitHub Desktop will upload your code. You should see:
-- ✅ Upload progress bar
-- ✅ "Published" status when complete
-- ✅ Button changes to "View on GitHub"
+- Upload progress bar
+- "Published" status when complete
+- Button changes to "View on GitHub"
 
 Click **View on GitHub** to open your repository in a browser.
 
@@ -57,7 +57,7 @@ Click **View on GitHub** to open your repository in a browser.
 
 ## What Was Uploaded
 
-### ✅ Included (77 files)
+### Included (77 files)
 - All Python source code
 - Documentation (README.md, ARCHITECTURE.md, etc.)
 - Training scripts for all 3 phases
@@ -65,7 +65,7 @@ Click **View on GitHub** to open your repository in a browser.
 - Configuration files
 - .gitignore
 
-### ❌ Excluded (by .gitignore)
+### Excluded (by .gitignore)
 - Training data (EPIC-KITCHENS/, *.mp4, *.csv)
 - Model checkpoints (*.pth, outputs_*)
 - Training logs (training_*_output_*.txt)
@@ -87,8 +87,8 @@ Click **View on GitHub** to open your repository in a browser.
 4. Click **Add people**
 5. Enter teammate's GitHub username or email
 6. Select permission level:
-   - **Write**: Can push code
-   - **Admin**: Full access
+- **Write**: Can push code
+- **Admin**: Full access
 7. Click **Add [username] to this repository**
 
 ### Option 2: Share Repository Link
@@ -141,7 +141,7 @@ pip install -r requirements.txt
 ### 3. Update Configuration
 Edit `common/config.py` if paths are different:
 ```python
-DATA_DIR = Path('EPIC-KITCHENS')  # Update if needed
+DATA_DIR = Path('EPIC-KITCHENS') # Update if needed
 ```
 
 ### 4. Start Training
@@ -181,13 +181,13 @@ Follow the guide in `docs/TRAINING_GUIDE.md`
 
 ## Important Notes
 
-⚠️ **Data Not Included**: Team members must download EPIC-KITCHENS-100 separately
+**Data Not Included**: Team members must download EPIC-KITCHENS-100 separately
 
-⚠️ **Models Not Included**: Trained checkpoints remain on:
+**Models Not Included**: Trained checkpoints remain on:
 - Your local machine: `/Users/stan/Downloads/RDLAB/epic_kitchens/outputs*/`
 - VSC cluster: `/vsc-hard-mounts/leuven-data/380/vsc38064/epic_kitchens/outputs*/`
 
-📦 **Share Models Separately**: Use VSC, Google Drive, or other file sharing for checkpoints
+**Share Models Separately**: Use VSC, Google Drive, or other file sharing for checkpoints
 
 ---
 
@@ -208,10 +208,10 @@ Follow the guide in `docs/TRAINING_GUIDE.md`
 
 ## Next Steps
 
-1. ✅ Publish repository via GitHub Desktop
-2. ✅ Verify on GitHub website
-3. ✅ Add team collaborators
-4. ✅ Share repository URL with team
-5. ✅ Team clones and sets up their environment
+1. Publish repository via GitHub Desktop
+2. Verify on GitHub website
+3. Add team collaborators
+4. Share repository URL with team
+5. Team clones and sets up their environment
 
 **Last Updated**: November 19, 2025

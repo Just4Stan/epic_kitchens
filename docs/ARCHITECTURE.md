@@ -21,42 +21,42 @@ This project implements a three-phase approach to action recognition on the EPIC
 - **Backbone**: ResNet-50 (pretrained on ImageNet)
 - **Temporal Aggregation**: Average pooling across frames
 - **Parameters**: ~25M
-- **Status**: ✅ Trained (25 epochs)
+- **Status**: Trained (25 epochs)
 - **Checkpoints**: `outputs/checkpoints/`
 
 #### 2. LSTM (ResNet-50 + LSTM)
 - **Backbone**: ResNet-50
 - **Temporal Model**: 2-layer LSTM (hidden_dim=512)
 - **Parameters**: ~27M
-- **Status**: ✅ Trained (25 epochs)
+- **Status**: Trained (25 epochs)
 - **Checkpoints**: `outputs_lstm/checkpoints/`
 
 #### 3. Transformer (ResNet-50 + Transformer)
 - **Backbone**: ResNet-50
 - **Temporal Model**: 6-layer Transformer (d_model=512, nhead=8)
 - **Parameters**: ~30M
-- **Status**: ✅ Trained (35 epochs)
+- **Status**: Trained (35 epochs)
 - **Checkpoints**: `outputs_transformer/checkpoints/`
 
 #### 4. 3D CNN (R(2+1)D)
 - **Architecture**: 3D Convolutional Network
 - **Temporal Modeling**: 3D convolutions (spatial + temporal)
 - **Parameters**: ~28M
-- **Status**: ✅ Trained (20 epochs)
+- **Status**: Trained (20 epochs)
 - **Checkpoints**: `outputs_3dcnn/checkpoints/`
 
 #### 5. EfficientNet-B3 + LSTM
 - **Backbone**: EfficientNet-B3 (more efficient than ResNet-50)
 - **Temporal Model**: LSTM
 - **Parameters**: ~22M
-- **Status**: ✅ Trained (20 epochs)
+- **Status**: Trained (20 epochs)
 - **Checkpoints**: `outputs_efficientnet_lstm/checkpoints/`
 
 #### 6. EfficientNet-B3 + Transformer
 - **Backbone**: EfficientNet-B3
 - **Temporal Model**: Transformer
 - **Parameters**: ~24M
-- **Status**: ✅ Trained (20 epochs)
+- **Status**: Trained (20 epochs)
 - **Checkpoints**: `outputs_efficientnet_transformer/checkpoints/`
 
 ### Phase 1 Key Findings
@@ -96,14 +96,14 @@ This project implements a three-phase approach to action recognition on the EPIC
 
 | Config | LR | Batch Size | Dropout | Label Smoothing | Drop Path |
 |--------|-----|------------|---------|-----------------|-----------|
-| 1      | 5e-5| 24         | 0.5     | 0.1             | 0.1       |
-| 2      | 1e-4| 24         | 0.4     | 0.1             | 0.1       |
-| 3      | 5e-5| 32         | 0.5     | 0.15            | 0.1       |
-| 4      | 5e-5| 24         | 0.6     | 0.1             | 0.15      |
-| 5      | 3e-5| 24         | 0.5     | 0.1             | 0.1       |
-| 6      | 5e-5| 16         | 0.5     | 0.1             | 0.1       |
-| 7      | 5e-5| 24         | 0.5     | 0.2             | 0.1       |
-| 8      | 5e-5| 24         | 0.4     | 0.1             | 0.05      |
+| 1 | 5e-5| 24 | 0.5 | 0.1 | 0.1 |
+| 2 | 1e-4| 24 | 0.4 | 0.1 | 0.1 |
+| 3 | 5e-5| 32 | 0.5 | 0.15 | 0.1 |
+| 4 | 5e-5| 24 | 0.6 | 0.1 | 0.15 |
+| 5 | 3e-5| 24 | 0.5 | 0.1 | 0.1 |
+| 6 | 5e-5| 16 | 0.5 | 0.1 | 0.1 |
+| 7 | 5e-5| 24 | 0.5 | 0.2 | 0.1 |
+| 8 | 5e-5| 24 | 0.4 | 0.1 | 0.05 |
 
 ### Phase 2 Status
 - **Models Trained**: 3 out of 8 configurations completed
@@ -120,95 +120,95 @@ This project implements a three-phase approach to action recognition on the EPIC
 #### Cross-Attention Mechanism
 ```
 Verb Features ←→ Cross-Attention ←→ Noun Features
-      ↓                                    ↓
-Verb Logits                          Noun Logits
+↓ ↓
+Verb Logits Noun Logits
 ```
 
 #### Key Components
 
 1. **Shared Backbone**
-   - ResNet-50 with frozen early layers
-   - Spatial feature extraction
+- ResNet-50 with frozen early layers
+- Spatial feature extraction
 
 2. **Multi-Scale Temporal Modeling**
-   - Multiple temporal scales (windows: 4, 8, 16 frames)
-   - Captures both short and long-term dependencies
+- Multiple temporal scales (windows: 4, 8, 16 frames)
+- Captures both short and long-term dependencies
 
 3. **Task-Specific Branches**
-   - Separate branches for verb and noun feature extraction
-   - Task-specific transformations
+- Separate branches for verb and noun feature extraction
+- Task-specific transformations
 
 4. **Bidirectional Cross-Attention**
-   - Verb features attend to noun features
-   - Noun features attend to verb features
-   - Models semantic relationships (e.g., "open" → "refrigerator")
+- Verb features attend to noun features
+- Noun features attend to verb features
+- Models semantic relationships (e.g., "open" → "refrigerator")
 
 5. **Regularization**
-   - Dropout, Drop Path, Label Smoothing (same as Phase 2)
-   - Prevents overfitting while learning interactions
+- Dropout, Drop Path, Label Smoothing (same as Phase 2)
+- Prevents overfitting while learning interactions
 
 ### Phase 3 Status
-- **Model**: ✅ Implemented
-- **Training Script**: ✅ Created
-- **Status**: 🔄 Ready to train (awaiting Phase 2 completion)
+- **Model**: Implemented
+- **Training Script**: Created
+- **Status**: Ready to train (awaiting Phase 2 completion)
 - **Expected Improvement**: 3-5% over best Phase 2 model
 
 ## Model Comparison
 
 | Phase | Model Type | Params | Train Acc | Val Acc | Overfitting Gap |
 |-------|------------|--------|-----------|---------|-----------------|
-| 1     | Baseline   | 25M    | ~45%      | ~30%    | ~15%            |
-| 1     | LSTM       | 27M    | ~48%      | ~32%    | ~16%            |
-| 1     | Transformer| 30M    | ~50%      | ~35%    | ~15%            |
-| 2     | Improved   | 25M    | ~36%      | ~27%    | ~5%             |
-| 3     | Cross-Attn | 26M    | TBD       | TBD     | TBD             |
+| 1 | Baseline | 25M | ~45% | ~30% | ~15% |
+| 1 | LSTM | 27M | ~48% | ~32% | ~16% |
+| 1 | Transformer| 30M | ~50% | ~35% | ~15% |
+| 2 | Improved | 25M | ~36% | ~27% | ~5% |
+| 3 | Cross-Attn | 26M | TBD | TBD | TBD |
 
 ## File Structure
 
 ```
 epic_kitchens/
-├── common/                      # Shared utilities
-│   ├── __init__.py
-│   ├── config.py               # Configuration class
-│   └── dataset.py              # Base dataset loader
-├── phase1/                     # Architecture comparison
-│   ├── __init__.py
-│   ├── model.py                # Baseline model
-│   ├── model_lstm.py           # LSTM model
-│   ├── model_transformer.py    # Transformer model
-│   ├── model_advanced.py       # EfficientNet models
-│   ├── model_hybrid.py         # Hybrid architectures
-│   ├── train.py                # Main training script
-│   ├── train_*.py              # Model-specific wrappers
-│   └── *.slurm                 # SLURM job files
-├── phase2/                     # Hyperparameter optimization
-│   ├── __init__.py
-│   ├── model_improved.py       # Improved model with regularization
-│   ├── dataset_improved.py     # Aggressive augmentation
-│   ├── train_improved.py       # Training with validation
-│   └── train_config*.slurm     # Configuration job files
-├── phase3/                     # Cross-attention
-│   ├── __init__.py
-│   ├── model_cross_attention.py  # Cross-task attention model
-│   ├── train_cross_attention.py  # Training script
-│   └── README.md               # Architecture details
-├── validation/                 # Validation scripts
-│   ├── __init__.py
-│   ├── validate_true.py        # True validation set
-│   ├── validate_checkpoint.py  # Checkpoint validation
-│   └── ...
-├── inference/                  # Real-time inference
-│   ├── __init__.py
-│   ├── realtime_webcam.py      # Webcam demo
-│   └── ...
-├── utils/                      # Utilities
-│   ├── __init__.py
-│   └── dataset_split.py        # Data splitting
-├── docs/                       # Documentation
-│   ├── README.md
-│   ├── ARCHITECTURE.md         # This file
-│   └── TRAINING_GUIDE.md       # Training instructions
-└── README.md                   # Main README
+common/ # Shared utilities
+__init__.py
+config.py # Configuration class
+dataset.py # Base dataset loader
+phase1/ # Architecture comparison
+__init__.py
+model.py # Baseline model
+model_lstm.py # LSTM model
+model_transformer.py # Transformer model
+model_advanced.py # EfficientNet models
+model_hybrid.py # Hybrid architectures
+train.py # Main training script
+train_*.py # Model-specific wrappers
+*.slurm # SLURM job files
+phase2/ # Hyperparameter optimization
+__init__.py
+model_improved.py # Improved model with regularization
+dataset_improved.py # Aggressive augmentation
+train_improved.py # Training with validation
+train_config*.slurm # Configuration job files
+phase3/ # Cross-attention
+__init__.py
+model_cross_attention.py # Cross-task attention model
+train_cross_attention.py # Training script
+README.md # Architecture details
+validation/ # Validation scripts
+__init__.py
+validate_true.py # True validation set
+validate_checkpoint.py # Checkpoint validation
+...
+inference/ # Real-time inference
+__init__.py
+realtime_webcam.py # Webcam demo
+...
+utils/ # Utilities
+__init__.py
+dataset_split.py # Data splitting
+docs/ # Documentation
+README.md
+ARCHITECTURE.md # This file
+TRAINING_GUIDE.md # Training instructions
+README.md # Main README
 ```
 
 ## Technical Details
@@ -241,8 +241,8 @@ epic_kitchens/
 
 ## Next Steps
 
-1. ✅ Complete Phase 2 hyperparameter sweep
-2. 🔄 Analyze Phase 2 results and select best configuration
-3. ⏳ Train Phase 3 cross-attention model
-4. ⏳ Compare all models and prepare final report
-5. ⏳ Prepare presentation with results and insights
+1. Complete Phase 2 hyperparameter sweep
+2. Analyze Phase 2 results and select best configuration
+3. [PENDING] Train Phase 3 cross-attention model
+4. [PENDING] Compare all models and prepare final report
+5. [PENDING] Prepare presentation with results and insights
