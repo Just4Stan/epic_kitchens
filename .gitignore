@@ -1,0 +1,168 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+epic_env/
+lab_env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.code-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# PyTorch/ML
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.safetensors
+
+# Training outputs and checkpoints
+outputs/
+outputs_*/
+model_comparison/
+local_validation/
+checkpoints/
+runs/
+logs/
+tensorboard/
+wandb/
+
+# Data directories (EXCLUDE ALL DATA)
+EPIC-KITCHENS/
+epic-kitchens-download-scripts/
+data/
+datasets/
+videos/
+videos_*/
+frames/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Annotations and large CSV files (keep small ones)
+*.csv
+!requirements.txt
+
+# Re-include small essential CSVs if needed
+# !EPIC_100_train.csv
+# !EPIC_100_validation.csv
+
+# Images (exclude large image datasets)
+BioID_FaceDatabase/
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tiff
+!docs/*.png
+!docs/*.jpg
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# SLURM output files
+*.out
+*.err
+slurm-*.out
+training_*_output_*.txt
+training_*_error_*.txt
+setup_output_*.txt
+setup_error_*.txt
+validation_output_*.txt
+validation_error_*.txt
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Backup files
+*.bak
+*.backup
+*.old
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Results and analysis files (large)
+results/
+analysis/
+plots/
+figures/
+validation_results.json
+training_history.json
+metrics.json
+
+# Misc
+*.swp
+*.swo
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Keep important documentation
+!README.md
+!docs/**/*.md
+!phase*/README.md
+
+# Keep essential configuration
+!requirements.txt
+!.gitignore
