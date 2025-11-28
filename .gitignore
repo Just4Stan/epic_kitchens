@@ -56,16 +56,20 @@ lab_env/
 *.hdf5
 *.safetensors
 
-# Training outputs and checkpoints
-outputs/
+# Training outputs and checkpoints (keep only final models)
 outputs_*/
 model_comparison/
 local_validation/
-checkpoints/
 runs/
-logs/
+logs/*.out
+logs/*.err
 tensorboard/
 wandb/
+
+# Keep final model checkpoints
+!outputs/full_a100_v3/
+!outputs/full_32frames_v1/
+!outputs/submissions/
 
 # Data directories (EXCLUDE ALL DATA)
 EPIC-KITCHENS/
@@ -139,14 +143,19 @@ validation_error_*.txt
 ehthumbs.db
 Thumbs.db
 
-# Results and analysis files (large)
-results/
+# Results and analysis files (keep final results and figures)
 analysis/
 plots/
-figures/
 validation_results.json
 training_history.json
 metrics.json
+
+# Keep final results
+!results/
+!results/figures/
+!results/wandb_data/
+!results/FINAL_RESULTS.md
+!results/generate_graphs.py
 
 # Misc
 *.swp

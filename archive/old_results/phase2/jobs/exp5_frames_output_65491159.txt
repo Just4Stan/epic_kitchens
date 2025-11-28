@@ -1,0 +1,258 @@
+SLURM_JOB_ID: 65491159
+SLURM_JOB_USER: vsc38064
+SLURM_JOB_ACCOUNT: lp_edu_rdlab
+SLURM_JOB_NAME: exp5_frames
+SLURM_CLUSTER_NAME: wice
+SLURM_JOB_PARTITION: gpu_a100
+SLURM_NNODES: 1
+SLURM_NODELIST: k28g25
+SLURM_JOB_CPUS_PER_NODE: 18
+SLURM_JOB_GPUS: 1
+Date: Sat Nov 22 11:29:54 CET 2025
+Walltime: 00-08:00:00
+========================================================================
+========================================
+Exp 5: More Frames (16 frames)
+========================================
+Sat Nov 22 11:29:58 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:19:00.0 Off |                    0 |
+| N/A   37C    P0             66W /  500W |       0MiB /  81920MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+W&B initialized: https://wandb.ai/stan-coene-ku-leuven/epic-kitchens/runs/7mad33hx
+======================================================================
+TRAINING v4 - Anti-Overfitting Edition
+======================================================================
+  epochs: 20
+  batch_size: 32
+  lr: 0.0001
+  num_workers: 16
+  num_frames: 16
+  output_dir: outputs_exp5_frames
+  augmentation: medium
+  backbone: resnet50
+  temporal_model: transformer
+  dropout: 0.5
+  label_smoothing: 0.1
+  freeze_backbone: early
+  early_stopping: True
+  patience: 5
+  weight_decay: 0.0001
+  warmup_epochs: 2
+  wandb: True
+  wandb_project: epic-kitchens
+  exp_name: exp5_frames16
+======================================================================
+Loading training dataset (pre-extracted frames)...
+Found 67217 action segments in annotations
+Using 27113 actions with extracted frames
+Loading validation dataset from EPIC-KITCHENS/videos_640x360_validation...
+Found 9668 action segments in annotations
+Using 1347 actions with available videos
+
+Train: 27113 samples, 848 batches
+Val: 1347 samples, 43 batches
+Frozen: Early backbone layers (conv1-layer3)
+
+Model: resnet50 + transformer
+  Total params: 31.6M
+  Trainable params: 23.1M (73.0%)
+  LR warmup: 2 epochs
+
+Starting training at 2025-11-22 11:30:10
+  Initial GPU: 0.1GB/85.1GB used, 0% utilization
+
+======================================================================
+EPOCH 1/20
+======================================================================
+
+  Train: Loss=3.7271, Verb=28.64%, Noun=12.32%
+  Val:   Loss=3.4679, Verb=31.40%, Noun=17.89%, Action=6.83%
+  Val Top-5: Verb=78.10%, Noun=36.45%
+  GPU: 0.4GB/85.1GB used, 80% utilization
+  Epoch time: 12.8min | ETA: 242.5min
+  >>> New best! Action=6.83%
+
+======================================================================
+EPOCH 2/20
+======================================================================
+
+  Train: Loss=3.2313, Verb=37.69%, Noun=23.64%
+  Val:   Loss=3.1454, Verb=36.45%, Noun=29.10%, Action=13.96%
+  Val Top-5: Verb=81.81%, Noun=54.49%
+  GPU: 0.6GB/85.1GB used, 94% utilization
+  Epoch time: 10.4min | ETA: 187.2min
+  >>> New best! Action=13.96%
+
+======================================================================
+EPOCH 3/20
+======================================================================
+
+  Train: Loss=2.9062, Verb=44.09%, Noun=33.26%
+  Val:   Loss=3.0759, Verb=40.53%, Noun=30.36%, Action=16.70%
+  Val Top-5: Verb=83.00%, Noun=54.79%
+  GPU: 0.6GB/85.1GB used, 99% utilization
+  Epoch time: 10.4min | ETA: 176.7min
+  >>> New best! Action=16.70%
+
+======================================================================
+EPOCH 4/20
+======================================================================
+
+  Train: Loss=2.6378, Verb=50.08%, Noun=41.46%
+  Val:   Loss=3.0857, Verb=39.12%, Noun=31.33%, Action=16.78%
+  Val Top-5: Verb=82.55%, Noun=57.31%
+  GPU: 0.6GB/85.1GB used, 99% utilization
+  Epoch time: 10.4min | ETA: 167.1min
+  >>> New best! Action=16.78%
+
+======================================================================
+EPOCH 5/20
+======================================================================
+
+  Train: Loss=2.3881, Verb=56.16%, Noun=49.95%
+  Val:   Loss=3.1642, Verb=38.60%, Noun=31.03%, Action=15.81%
+  Val Top-5: Verb=81.44%, Noun=55.75%
+  GPU: 0.6GB/85.1GB used, 98% utilization
+  Epoch time: 10.4min | ETA: 155.6min
+
+======================================================================
+EPOCH 6/20
+======================================================================
+
+  Train: Loss=2.1822, Verb=61.99%, Noun=57.25%
+  Val:   Loss=3.1067, Verb=40.76%, Noun=31.33%, Action=17.52%
+  Val Top-5: Verb=82.93%, Noun=56.12%
+  GPU: 0.6GB/85.1GB used, 75% utilization
+  Epoch time: 10.4min | ETA: 145.9min
+  >>> New best! Action=17.52%
+
+======================================================================
+EPOCH 7/20
+======================================================================
+
+  Train: Loss=2.0494, Verb=66.93%, Noun=61.45%
+  Val:   Loss=3.1317, Verb=42.24%, Noun=30.66%, Action=18.04%
+  Val Top-5: Verb=81.96%, Noun=56.20%
+  GPU: 0.6GB/85.1GB used, 99% utilization
+  Epoch time: 10.4min | ETA: 135.4min
+  >>> New best! Action=18.04%
+
+======================================================================
+EPOCH 8/20
+======================================================================
+
+  Train: Loss=2.1846, Verb=62.00%, Noun=56.91%
+  Val:   Loss=3.2213, Verb=42.02%, Noun=29.55%, Action=17.89%
+  Val Top-5: Verb=80.48%, Noun=54.12%
+  GPU: 0.6GB/85.1GB used, 99% utilization
+  Epoch time: 10.4min | ETA: 125.1min
+
+======================================================================
+EPOCH 9/20
+======================================================================
+
+  Train: Loss=2.0595, Verb=65.33%, Noun=61.06%
+  Val:   Loss=3.2862, Verb=41.72%, Noun=30.29%, Action=18.49%
+  Val Top-5: Verb=77.06%, Noun=52.41%
+  GPU: 0.6GB/85.1GB used, 25% utilization
+  Epoch time: 10.4min | ETA: 114.6min
+  >>> New best! Action=18.49%
+
+======================================================================
+EPOCH 10/20
+======================================================================
+
+  Train: Loss=1.9141, Verb=69.72%, Noun=66.08%
+  Val:   Loss=3.3897, Verb=39.87%, Noun=29.32%, Action=17.82%
+  Val Top-5: Verb=76.32%, Noun=51.22%
+  GPU: 0.6GB/85.1GB used, 83% utilization
+  Epoch time: 10.4min | ETA: 104.4min
+
+======================================================================
+EPOCH 11/20
+======================================================================
+
+  Train: Loss=1.7844, Verb=73.79%, Noun=70.04%
+  Val:   Loss=3.4582, Verb=38.16%, Noun=31.18%, Action=19.01%
+  Val Top-5: Verb=73.42%, Noun=53.45%
+  GPU: 0.6GB/85.1GB used, 7% utilization
+  Epoch time: 9.9min | ETA: 89.3min
+  >>> New best! Action=19.01%
+
+======================================================================
+EPOCH 12/20
+======================================================================
+
+  Train: Loss=1.6533, Verb=78.15%, Noun=74.77%
+  Val:   Loss=3.4388, Verb=38.60%, Noun=31.70%, Action=18.41%
+  Val Top-5: Verb=75.20%, Noun=52.78%
+  GPU: 0.6GB/85.1GB used, 0% utilization
+  Epoch time: 10.4min | ETA: 83.6min
+
+======================================================================
+EPOCH 13/20
+======================================================================
+
+  Train: Loss=1.5396, Verb=81.75%, Noun=79.14%
+  Val:   Loss=3.5226, Verb=37.94%, Noun=30.88%, Action=18.11%
+  Val Top-5: Verb=73.13%, Noun=51.97%
+  GPU: 0.6GB/85.1GB used, 9% utilization
+  Epoch time: 10.4min | ETA: 72.6min
+
+======================================================================
+EPOCH 14/20
+======================================================================
+
+  Train: Loss=1.4433, Verb=85.06%, Noun=82.25%
+  Val:   Loss=3.6238, Verb=36.75%, Noun=30.59%, Action=18.41%
+  Val Top-5: Verb=70.75%, Noun=50.71%
+  GPU: 0.6GB/85.1GB used, 0% utilization
+  Epoch time: 10.4min | ETA: 62.4min
+
+======================================================================
+EPOCH 15/20
+======================================================================
+
+  Train: Loss=1.3704, Verb=87.42%, Noun=85.13%
+  Val:   Loss=3.6330, Verb=37.56%, Noun=31.40%, Action=18.19%
+  Val Top-5: Verb=70.23%, Noun=52.04%
+  GPU: 0.6GB/85.1GB used, 17% utilization
+  Epoch time: 10.4min | ETA: 52.0min
+
+======================================================================
+EPOCH 16/20
+======================================================================
+
+  Train: Loss=1.3223, Verb=89.33%, Noun=86.94%
+  Val:   Loss=3.6815, Verb=36.67%, Noun=31.11%, Action=18.11%
+  Val Top-5: Verb=68.82%, Noun=50.56%
+  GPU: 0.6GB/85.1GB used, 57% utilization
+  Epoch time: 10.3min | ETA: 41.4min
+
+  Early stopping triggered! Best: 19.01%
+
+======================================================================
+TRAINING COMPLETE
+======================================================================
+  Best validation action accuracy: 19.01%
+  Total training time: 2.8 hours (168 minutes)
+  Completed at: 2025-11-22 14:18:40
+  Final GPU: 0.6GB/85.1GB used, 57% utilization
+======================================================================
+End: Sat Nov 22 14:18:44 CET 2025

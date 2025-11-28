@@ -1,0 +1,121 @@
+SLURM_JOB_ID: 65491171
+SLURM_JOB_USER: vsc38064
+SLURM_JOB_ACCOUNT: lp_edu_rdlab
+SLURM_JOB_NAME: train_v6
+SLURM_CLUSTER_NAME: wice
+SLURM_JOB_PARTITION: gpu_a100
+SLURM_NNODES: 1
+SLURM_NODELIST: k28g25
+SLURM_JOB_CPUS_PER_NODE: 18
+SLURM_JOB_GPUS: 2
+Date: Sat Nov 22 11:59:13 CET 2025
+Walltime: 01-00:00:00
+========================================================================
+========================================================================
+Training v6 - ANTI-OVERFITTING EDITION
+========================================================================
+Job ID: 65491171
+Node: k28g25
+GPUs: 1
+CPUs: 18
+Memory: 65536
+Start time: Sat Nov 22 11:59:23 CET 2025
+
+NVIDIA A100-SXM4-80GB, 81920 MiB
+
+========================================================================
+Training Configuration:
+  Script: train_preextracted_v6.py
+  Backbone: resnet50
+  Temporal: transformer
+  Frames: 16
+  Batch size: 32
+  Dropout: 0.6
+  Weight decay: 5e-4
+  MixUp: enabled
+  Balanced sampling: enabled
+  Label smoothing: 0.15
+========================================================================
+
+W&B logging enabled: v6_anti_overfit
+======================================================================
+TRAINING v6 - ANTI-OVERFITTING EDITION
+======================================================================
+Key improvements:
+  - Class-balanced sampling for long-tail distribution
+  - MixUp augmentation for better generalization
+  - Higher dropout (0.6) and weight decay (5e-4)
+  - 16 frames for better temporal coverage
+  - Warmup + early stopping
+======================================================================
+  epochs: 30
+  batch_size: 32
+  lr: 5e-05
+  num_workers: 16
+  num_frames: 16
+  output_dir: outputs_v6
+  augmentation: heavy
+  backbone: resnet50
+  temporal_model: transformer
+  dropout: 0.6
+  label_smoothing: 0.15
+  freeze_backbone: early
+  early_stopping: True
+  patience: 7
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  cross_attn_heads: 4
+  cross_attn_layers: 1
+  use_mixup: True
+  mixup_alpha: 0.4
+  use_cutmix: False
+  cutmix_alpha: 1.0
+  use_focal_loss: False
+  use_balanced_sampling: True
+  wandb: True
+  wandb_project: epic-kitchens
+  exp_name: v6_anti_overfit
+======================================================================
+Loading training dataset (pre-extracted frames)...
+Found 67217 action segments in annotations
+Using 27113 actions with extracted frames
+
+  Class balancing statistics:
+  - Noun classes: 258
+  - Most common noun: (0, 1265) samples
+  - Least common noun: (297, 1) samples
+  - Sample weight range: [0.0717, 90.6789]
+  - Mean sample weight: 0.8629
+Loading validation dataset from EPIC-KITCHENS/videos_640x360_validation...
+Found 9668 action segments in annotations
+Using 1347 actions with available videos
+
+  Using BALANCED sampling (WeightedRandomSampler)
+
+Train: 27113 samples, 848 batches
+Val: 1347 samples, 43 batches
+Frozen: Early backbone layers (conv1-layer3)
+
+Model: resnet50 + transformer + CrossAttn
+  Total params: 35.3M
+  Trainable params: 26.7M (75.8%)
+  Loss: Label Smoothing CE (smoothing=0.15)
+  LR schedule: 3 epoch warmup + cosine annealing
+
+Starting training at 2025-11-22 11:59:43
+  Initial GPU: 0.1GB/85.1GB used, 0% utilization
+
+======================================================================
+EPOCH 1/30
+======================================================================
+
+  Train: Loss=4.6170, Verb=20.73%, Noun=0.44%, Action=0.09%
+  Val:   Loss=4.3871, Verb=25.24%, Noun=0.00%, Action=0.00%
+  Val Top-5: Verb=72.31%, Noun=3.41%
+  Generalization gap: Verb=-4.5%, Noun=0.4%, Action=0.1%
+  GPU: 0.5GB/85.1GB used, 0% utilization
+  Epoch time: 11.1min | ETA: 322.4min
+
+======================================================================
+EPOCH 2/30
+======================================================================

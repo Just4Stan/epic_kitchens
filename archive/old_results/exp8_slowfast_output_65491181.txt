@@ -1,0 +1,204 @@
+SLURM_JOB_ID: 65491181
+SLURM_JOB_USER: vsc38064
+SLURM_JOB_ACCOUNT: lp_edu_rdlab
+SLURM_JOB_NAME: exp8_slowfast
+SLURM_CLUSTER_NAME: wice
+SLURM_JOB_PARTITION: gpu_a100
+SLURM_NNODES: 1
+SLURM_NODELIST: k28g27
+SLURM_JOB_CPUS_PER_NODE: 18
+SLURM_JOB_GPUS: 3
+Date: Sat Nov 22 12:05:11 CET 2025
+Walltime: 00-08:00:00
+========================================================================
+============================================
+EXP8: SLOWFAST NETWORKS
+============================================
+Two-pathway architecture:
+  - Slow: 4 frames, full ResNet18 (spatial/objects)
+  - Fast: 16 frames, lightweight net (temporal/motion)
+
+This helps because:
+  - Slow path captures WHAT objects (nouns)
+  - Fast path captures HOW action is done (verbs)
+============================================
+Job ID: 65491181
+Start: Sat Nov 22 12:05:15 CET 2025
+Sat Nov 22 12:05:15 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:C0:00.0 Off |                    0 |
+| N/A   43C    P0             64W /  500W |       0MiB /  81920MiB |      0%   E. Process |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+W&B logging enabled: exp8_slowfast
+======================================================================
+SLOWFAST TRAINING
+======================================================================
+  Slow pathway: 4 frames (spatial/object focus)
+  Fast pathway: 16 frames (temporal/motion focus)
+  epochs: 20
+  batch_size: 32
+  lr: 0.0001
+  num_workers: 16
+  slow_frames: 4
+  fast_frames: 16
+  output_dir: outputs_exp8_slowfast
+  augmentation: medium
+  dropout: 0.5
+  label_smoothing: 0.1
+  freeze_backbone: none
+  early_stopping: True
+  patience: 5
+  weight_decay: 0.0001
+  warmup_epochs: 2
+  wandb: True
+  wandb_project: epic-kitchens
+  exp_name: exp8_slowfast
+======================================================================
+Loading SlowFast dataset...
+  Slow pathway: 4 frames
+  Fast pathway: 16 frames
+  Found 27113 valid actions
+Loading SlowFast validation dataset...
+  Found 1347 valid actions
+
+Train: 27113 samples
+Val: 1347 samples
+
+SlowFast Model:
+  Total params: 12.4M
+  Trainable params: 12.4M
+
+Starting training at 2025-11-22 12:05:34
+  Initial GPU: 0.0GB/85.1GB used, 0% utilization
+
+======================================================================
+EPOCH 1/20
+======================================================================
+
+  Train: Loss=3.8837, Verb=27.51%, Noun=10.96%
+  Val:   Loss=3.5543, Verb=31.11%, Noun=15.29%, Action=5.57%
+  GPU: 0.2GB/85.1GB used, 0% utilization
+  Epoch time: 13.2min
+  >>> New best! Action=5.57%
+
+======================================================================
+EPOCH 2/20
+======================================================================
+
+  Train: Loss=3.4799, Verb=33.29%, Noun=19.19%
+  Val:   Loss=3.4376, Verb=35.26%, Noun=22.12%, Action=10.47%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.4min
+  >>> New best! Action=10.47%
+
+======================================================================
+EPOCH 3/20
+======================================================================
+
+  Train: Loss=3.2761, Verb=36.31%, Noun=24.74%
+  Val:   Loss=3.3315, Verb=31.25%, Noun=25.39%, Action=10.99%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.4min
+  >>> New best! Action=10.99%
+
+======================================================================
+EPOCH 4/20
+======================================================================
+
+  Train: Loss=3.0950, Verb=39.96%, Noun=29.39%
+  Val:   Loss=3.2487, Verb=37.71%, Noun=25.91%, Action=12.18%
+  GPU: 0.3GB/85.1GB used, 13% utilization
+  Epoch time: 12.4min
+  >>> New best! Action=12.18%
+
+======================================================================
+EPOCH 5/20
+======================================================================
+
+  Train: Loss=2.9271, Verb=43.36%, Noun=34.16%
+  Val:   Loss=3.1974, Verb=38.53%, Noun=25.17%, Action=12.10%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.4min
+
+======================================================================
+EPOCH 6/20
+======================================================================
+
+  Train: Loss=2.7707, Verb=47.26%, Noun=39.03%
+  Val:   Loss=3.1689, Verb=38.38%, Noun=27.62%, Action=14.18%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.3min
+  >>> New best! Action=14.18%
+
+======================================================================
+EPOCH 7/20
+======================================================================
+
+  Train: Loss=2.6655, Verb=50.37%, Noun=42.94%
+  Val:   Loss=3.1392, Verb=37.86%, Noun=27.17%, Action=14.03%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.3min
+
+======================================================================
+EPOCH 8/20
+======================================================================
+
+  Train: Loss=2.7779, Verb=46.18%, Noun=38.50%
+  Val:   Loss=3.2619, Verb=37.19%, Noun=25.61%, Action=10.91%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.3min
+
+======================================================================
+EPOCH 9/20
+======================================================================
+
+  Train: Loss=2.6786, Verb=47.90%, Noun=41.76%
+  Val:   Loss=3.1976, Verb=38.60%, Noun=28.14%, Action=14.18%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.3min
+
+======================================================================
+EPOCH 10/20
+======================================================================
+
+  Train: Loss=2.5734, Verb=50.72%, Noun=45.17%
+  Val:   Loss=3.2835, Verb=34.74%, Noun=26.95%, Action=14.03%
+  GPU: 0.3GB/85.1GB used, 0% utilization
+  Epoch time: 12.3min
+
+======================================================================
+EPOCH 11/20
+======================================================================
+
+  Train: Loss=2.4510, Verb=53.48%, Noun=49.09%
+  Val:   Loss=3.2482, Verb=34.30%, Noun=27.99%, Action=12.77%
+  GPU: 0.3GB/85.1GB used, 2% utilization
+  Epoch time: 12.4min
+
+  Early stopping! Best: 14.18%
+
+======================================================================
+TRAINING COMPLETE
+  Best action accuracy: 14.18%
+  Total time: 137 minutes
+======================================================================
+
+============================================
+EXP8 COMPLETE
+End: Sat Nov 22 14:22:22 CET 2025
+============================================
