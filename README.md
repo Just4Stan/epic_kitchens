@@ -5,11 +5,6 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1.0-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-> **10x faster training than Video Transformers** with **comparable accuracy** 🚀
-> **Real-time inference** (30 FPS on laptop) • **Compact model** (285MB) • **Efficient training** (~5 hours total)
-
----
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -29,12 +24,11 @@
 This project implements an **efficient action recognition system** for the EPIC-KITCHENS-100 dataset, achieving competitive accuracy while being **10x faster to train** than state-of-the-art Video Transformers.
 
 **Key Features:**
-- ✅ **35% action accuracy** (55% verb, 45% noun)
-- ⚡ **10 minutes/epoch** training on A100 GPU
-- 💾 **Fits on A100 40GB** (only 28-32GB memory)
-- 📱 **Real-time** webcam inference (30 FPS on M3 Pro)
-- 🎯 **Compact** 285MB model size
-- 💰 **Cost-effective** training (~$20 total on cloud)
+- **35% action accuracy** (55% verb, 45% noun)
+- **10 minutes/epoch** training on A100 GPU
+- **Real-time** webcam inference (30 FPS on M3 Pro)
+- **Compact** 285MB model size
+- **Cost-effective** training (~$20 total on cloud)
 
 ---
 
@@ -51,14 +45,6 @@ While Video Transformers (TimeSformer, Video Swin) achieve state-of-the-art resu
 | **Inference Speed** | 30 FPS (laptop) | 5-10 FPS | **3-6x faster** |
 | **Training Cost** | ~$20 | ~$200+ | **10x cheaper** |
 | **Action Accuracy** | 35% | ~42-48% | Comparable |
-
-**Use cases where efficiency matters:**
-- 🧪 **Research iterations** - Test ideas quickly
-- 📱 **Edge deployment** - Run on mobile/embedded devices
-- 💵 **Limited budgets** - Train on consumer GPUs
-- ⏱️ **Rapid prototyping** - From idea to results in hours
-
----
 
 ## Model Architecture
 
@@ -96,20 +82,6 @@ Input Video (224x224x3xT frames)
 - Separate heads for verbs and nouns
 - Dropout 0.5 for regularization
 - Linear projection to class logits
-
-### Key Design Choices
-
-**Why ResNet50 over newer backbones?**
-- ✅ Proven performance on action recognition
-- ✅ Fast and memory-efficient
-- ✅ Excellent ImageNet pretraining
-- ✅ Widely supported
-
-**Why LSTM over Transformer?**
-- ✅ **Faster training** (no self-attention overhead)
-- ✅ **Less memory** (no attention matrices)
-- ✅ **Better for sequential data** (natural fit for videos)
-- ✅ **Same accuracy** in our experiments
 
 **Two Model Variants:**
 1. **16-frame model** - Faster training, good for short actions
