@@ -94,8 +94,6 @@ Input Video (224x224x3xT frames)
 
 ### Final Performance
 
-![Model Comparison](results/figures/03_model_comparison.png)
-
 | Model | Verb Acc | Noun Acc | Action Acc |
 |-------|----------|----------|------------|
 | 16-frame | 54.1% | 43.3% | 33.7% |
@@ -353,27 +351,13 @@ If you use this code, please cite:
 ```bibtex
 @misc{epic-kitchens-efficient,
   title={Efficient Action Recognition for EPIC-KITCHENS-100},
-  author={Your Name},
-  year={2024},
+  author={Stan Coene},
+  year={2025},
   url={https://github.com/your-username/epic-kitchens}
 }
 ```
 
----
 
-## Key Takeaways
-
-🎯 **Efficiency matters** - Our ResNet50+LSTM model achieves **10x faster training** than Video Transformers while maintaining competitive accuracy.
-
-⚡ **Real-time capable** - 30 FPS on laptop, 120 FPS on A100, perfect for real-world applications.
-
-💰 **Cost-effective** - Train both models in <5 hours for ~$20 vs $200+ for transformers.
-
-🚀 **Quick iterations** - Test new ideas in hours, not days.
-
-📱 **Deployment-ready** - Compact 285MB model runs on edge devices.
-
----
 
 ## License
 
@@ -384,9 +368,3 @@ MIT License - see LICENSE file for details.
 - EPIC-KITCHENS dataset creators
 - VSC (Vlaams Supercomputer Centrum) for compute resources
 - PyTorch and torchvision teams
-
----
-
-**Questions?** Open an issue or contact [your-email@example.com]
-
-**Want to improve efficiency further?** Check `archive/docs/RESEARCH_BRIEF.md` for ideas on SOTA techniques to explore.
