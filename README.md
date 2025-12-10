@@ -5,11 +5,6 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1.0-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-> **10x faster training than Video Transformers** with **comparable accuracy** 🚀
-> **Real-time inference** (30 FPS on laptop) • **Compact model** (285MB) • **Efficient training** (~5 hours total)
-
----
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -29,12 +24,11 @@
 This project implements an **efficient action recognition system** for the EPIC-KITCHENS-100 dataset, achieving competitive accuracy while being **10x faster to train** than state-of-the-art Video Transformers.
 
 **Key Features:**
-- ✅ **35% action accuracy** (55% verb, 45% noun)
-- ⚡ **10 minutes/epoch** training on A100 GPU
-- 💾 **Fits on A100 40GB** (only 28-32GB memory)
-- 📱 **Real-time** webcam inference (30 FPS on M3 Pro)
-- 🎯 **Compact** 285MB model size
-- 💰 **Cost-effective** training (~$20 total on cloud)
+- **35% action accuracy** (55% verb, 45% noun)
+- **10 minutes/epoch** training on A100 GPU
+- **Real-time** webcam inference (30 FPS on M3 Pro)
+- **Compact** 285MB model size
+- **Cost-effective** training (~$20 total on cloud)
 
 ---
 
@@ -51,14 +45,6 @@ While Video Transformers (TimeSformer, Video Swin) achieve state-of-the-art resu
 | **Inference Speed** | 30 FPS (laptop) | 5-10 FPS | **3-6x faster** |
 | **Training Cost** | ~$20 | ~$200+ | **10x cheaper** |
 | **Action Accuracy** | 35% | ~42-48% | Comparable |
-
-**Use cases where efficiency matters:**
-- 🧪 **Research iterations** - Test ideas quickly
-- 📱 **Edge deployment** - Run on mobile/embedded devices
-- 💵 **Limited budgets** - Train on consumer GPUs
-- ⏱️ **Rapid prototyping** - From idea to results in hours
-
----
 
 ## Model Architecture
 
@@ -97,20 +83,6 @@ Input Video (224x224x3xT frames)
 - Dropout 0.5 for regularization
 - Linear projection to class logits
 
-### Key Design Choices
-
-**Why ResNet50 over newer backbones?**
-- ✅ Proven performance on action recognition
-- ✅ Fast and memory-efficient
-- ✅ Excellent ImageNet pretraining
-- ✅ Widely supported
-
-**Why LSTM over Transformer?**
-- ✅ **Faster training** (no self-attention overhead)
-- ✅ **Less memory** (no attention matrices)
-- ✅ **Better for sequential data** (natural fit for videos)
-- ✅ **Same accuracy** in our experiments
-
 **Two Model Variants:**
 1. **16-frame model** - Faster training, good for short actions
 2. **32-frame model** - Better temporal context, +1.5% accuracy
@@ -122,83 +94,11 @@ Input Video (224x224x3xT frames)
 
 ### Final Performance
 
-![Model Comparison](results/figures/03_model_comparison.png)
-
 | Model | Verb Acc | Noun Acc | Action Acc |
 |-------|----------|----------|------------|
 | 16-frame | 54.1% | 43.3% | 33.7% |
 | 32-frame | 55.7% | 44.8% | 34.9% |
 | **Ensemble** | **55.2%** | **44.8%** | **35.1%** |
-
-### Training Curves
-
-**Validation Accuracy Over Epochs:**
-
-![Validation Accuracy](results/figures/02_validation_accuracy.png)
-
-- Both models converge within **10-15 epochs**
-- Early stopping prevents overfitting
-- Consistent improvements with longer temporal context (32 frames)
-
-**Training Loss:**
-
-![Training Loss](results/figures/01_training_loss.png)
-
-- Smooth convergence with cosine learning rate schedule
-- No signs of instability or overfitting
-
----
-
-## Efficiency Analysis
-
-### GPU Memory Usage
-
-![GPU Memory](results/figures/04_gpu_memory_efficiency.png)
-
-**Key Insights:**
-- **Peak memory**: 28-32 GB (only 70-80% of A100 40GB)
-- **Fits on consumer GPUs**: RTX 4090 (24GB) with gradient accumulation
-- **2x more efficient** than Video Transformers (typically need 60GB+)
-
-### Training Speed
-
-![Efficiency Comparison](results/figures/06_efficiency_comparison.png)
-
-**Benchmarks (on A100 40GB):**
-- **10 minutes/epoch** for 16-frame model
-- **15 minutes/epoch** for 32-frame model
-- **Total training time**: 4.5-7.5 hours per model
-- **Combined**: <12 hours for full ensemble
-
-**Comparison with SOTA:**
-- TimeSformer: ~2 hours/epoch → **12x slower**
-- Video Swin: ~3 hours/epoch → **18x slower**
-- SlowFast: ~1 hour/epoch → **6x slower**
-
-### Learning Rate Schedule
-
-![Learning Rate](results/figures/05_learning_rate_schedule.png)
-
-- **Warmup**: 3 epochs (prevents early instability)
-- **Cosine decay**: Smooth convergence to final accuracy
-- **Peak LR**: 1.5e-4 (optimal for fine-tuning)
-
-### Real-Time Performance
-
-**Inference Speed (FPS):**
-| Hardware | 16-frame | 32-frame |
-|----------|----------|----------|
-| A100 GPU | 120 FPS | 80 FPS |
-| RTX 3090 | 90 FPS | 60 FPS |
-| M3 Pro (MPS) | 35 FPS | 20 FPS |
-| M3 Pro (CPU) | 8 FPS | 4 FPS |
-
-**Model Size:**
-- Checkpoint: 285 MB
-- With optimizer state: 570 MB
-- Ensemble: 570 MB total (both models)
-
----
 
 ## Quick Start
 
@@ -499,27 +399,13 @@ If you use this code, please cite:
 ```bibtex
 @misc{epic-kitchens-efficient,
   title={Efficient Action Recognition for EPIC-KITCHENS-100},
-  author={Your Name},
-  year={2024},
+  author={Stan Coene},
+  year={2025},
   url={https://github.com/your-username/epic-kitchens}
 }
 ```
 
----
 
-## Key Takeaways
-
-🎯 **Efficiency matters** - Our ResNet50+LSTM model achieves **10x faster training** than Video Transformers while maintaining competitive accuracy.
-
-⚡ **Real-time capable** - 30 FPS on laptop, 120 FPS on A100, perfect for real-world applications.
-
-💰 **Cost-effective** - Train both models in <5 hours for ~$20 vs $200+ for transformers.
-
-🚀 **Quick iterations** - Test new ideas in hours, not days.
-
-📱 **Deployment-ready** - Compact 285MB model runs on edge devices.
-
----
 
 ## License
 
@@ -530,9 +416,3 @@ MIT License - see LICENSE file for details.
 - EPIC-KITCHENS dataset creators
 - VSC (Vlaams Supercomputer Centrum) for compute resources
 - PyTorch and torchvision teams
-
----
-
-**Questions?** Open an issue or contact [your-email@example.com]
-
-**Want to improve efficiency further?** Check `archive/docs/RESEARCH_BRIEF.md` for ideas on SOTA techniques to explore.
