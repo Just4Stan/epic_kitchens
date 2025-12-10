@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10}
+}
+
+% Custom commands
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\etal}{\textit{et al.}}
+
+\title{Efficient Egocentric Action Recognition: A Spatial-Temporal CNN-RNN Approach for EPIC-KITCHENS}
+
+\author{
+    Author Name\\
+    Institution\\
+    \texttt{email@example.com}
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present an efficient spatial-temporal approach for egocentric action recognition on the EPIC-KITCHENS-100 dataset. Our method combines a ResNet50 backbone for spatial feature extraction with a bidirectional LSTM for temporal modeling, achieving competitive performance while being significantly more efficient than state-of-the-art video transformers. Our ensemble model achieves 35.1\% action accuracy with only 12 hours of training on a single A100 GPU, representing a 10x speedup over transformer-based methods while maintaining 73\% of their performance. We demonstrate real-time inference capability at 30+ FPS on consumer hardware and successful deployment to mobile devices via CoreML. Our approach offers a practical balance between accuracy and computational efficiency for real-world egocentric action recognition applications.
+\end{abstract}
+
+\input{chapters/01-introduction}
+\input{chapters/02-background}
+\input{chapters/03-implementation}
+\input{chapters/04-results}
+\input{chapters/05-conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

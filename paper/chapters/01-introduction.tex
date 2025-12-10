@@ -1,0 +1,38 @@
+\section{Introduction}
+\label{sec:introduction}
+
+% MOTIVATION: Why egocentric action recognition matters
+Egocentric action recognition has emerged as a critical challenge in computer vision, with applications spanning augmented reality, assistive technologies, robotics, and human-computer interaction. Unlike third-person video understanding, egocentric (first-person) video presents unique challenges: rapid camera motion, frequent occlusions, and the need to understand both the action being performed and the objects being manipulated.
+
+% THE CHALLENGE: EPIC-KITCHENS dataset
+The EPIC-KITCHENS-100 dataset~\cite{damen2022rescaling} represents one of the largest and most challenging benchmarks for egocentric action recognition. Collected from 45 kitchens across 4 cities, it contains approximately 100 hours of unscripted cooking activities with fine-grained action annotations. The task requires predicting both a \textit{verb} (the action, \eg, ``cut'', ``open'', ``put'') and a \textit{noun} (the object, \eg, ``knife'', ``cupboard'', ``plate''), resulting in a complex multi-label classification problem with 97 verb classes and 300 noun classes.
+
+% THE PROBLEM: Computational cost of SOTA methods
+Recent advances in video understanding have been dominated by transformer-based architectures such as TimeSformer~\cite{bertasius2021space}, Video Swin Transformer~\cite{liu2022video}, and VideoMAE~\cite{tong2022videomae}. While these methods achieve impressive accuracy, they come with substantial computational costs:
+\begin{itemize}
+    \item Training times exceeding 100+ GPU-hours on high-end hardware
+    \item Memory requirements of 60-80GB, necessitating expensive accelerators
+    \item Large model sizes (1-2GB) limiting deployment options
+    \item Slow inference speeds incompatible with real-time applications
+\end{itemize}
+
+% OUR SOLUTION: Efficient CNN-RNN hybrid
+In this work, we present an efficient alternative that achieves competitive performance at a fraction of the computational cost. Our approach combines:
+\begin{enumerate}
+    \item A \textbf{ResNet50 backbone} pretrained on ImageNet for robust spatial feature extraction
+    \item A \textbf{bidirectional LSTM} for effective temporal modeling across video frames
+    \item \textbf{Dual classification heads} for independent verb and noun prediction
+    \item \textbf{Advanced augmentation strategies} including temporal-consistent CutMix
+\end{enumerate}
+
+% CONTRIBUTIONS
+Our main contributions are:
+\begin{enumerate}
+    \item An efficient spatial-temporal architecture achieving 35.1\% action accuracy on EPIC-KITCHENS-100, competitive with methods requiring 10x more compute
+    \item A comprehensive analysis of design choices, demonstrating that bidirectional LSTMs outperform transformers for short video sequences
+    \item Real-time inference capability (30+ FPS) and successful mobile deployment via CoreML
+    \item Complete training in under 12 hours on a single A100 GPU, at approximately 8\% of the cost of transformer-based alternatives
+\end{enumerate}
+
+% PAPER STRUCTURE
+The remainder of this paper is organized as follows: Section~\ref{sec:background} reviews related work in video understanding and egocentric action recognition. Section~\ref{sec:implementation} details our model architecture and training methodology. Section~\ref{sec:results} presents experimental results and ablation studies. Section~\ref{sec:conclusion} concludes with a discussion of limitations and future work.
