@@ -36,6 +36,7 @@ lab_env/
 archive/
 outputs/
 results/
+paper/
 
 # IDE
 .vscode/
