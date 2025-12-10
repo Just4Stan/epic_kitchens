@@ -131,10 +131,9 @@ python inference/export_to_coreml.py \
 **📱 Never used Xcode?** Follow the [Complete Beginner Tutorial](inference/XCODE_TUTORIAL.md) - from zero to working app in 30 minutes!
 
 **Performance on iPhone 16:**
-- ⚡ **15-20ms inference** (50-60 FPS)
-- 🧠 **A18 Neural Engine** (35 TOPS)
-- 💾 **142 MB model** (compact)
-- 🔋 **Very efficient** (minimal battery usage)
+- **50ms inference** 
+- **A18 Neural Engine** (35 TOPS)
+- **142 MB model**
 
 **Guides:**
 - 🎓 [XCODE_TUTORIAL.md](inference/XCODE_TUTORIAL.md) - Complete beginner guide (recommended)
