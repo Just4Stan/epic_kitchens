@@ -159,12 +159,7 @@ validation_results.json
 training_history.json
 metrics.json
 
-# Keep final results
-!results/
-!results/figures/
-!results/wandb_data/
-!results/FINAL_RESULTS.md
-!results/generate_graphs.py
+# Results folder is ignored (line 37)
 
 # Misc
 *.swp
@@ -193,10 +188,14 @@ inference/iOS_DEPLOYMENT.md
 inference/XCODE_TUTORIAL.md
 inference/test_preprocessing.py
 
-# Output videos and demo clips
+# Outputs folder - ignore large files, keep small ones
 outputs/*.mp4
 outputs/demo_clips/
-outputs/concat_list.txt
+outputs/demo_continuous.mp4
+outputs/full_*/checkpoints/*.pth
+outputs/submissions/*.zip
+outputs/submissions/*.pt
+!outputs/concat_list.txt
 
 # CoreML models (large, can be regenerated)
 models/*.mlpackage/
