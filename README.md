@@ -40,11 +40,9 @@ While Video Transformers (TimeSformer, Video Swin) achieve state-of-the-art resu
 |--------|----------------------|-------------------|-----------|
 | **Training Time** | ~10 min/epoch | ~2 hours/epoch | **12x faster** |
 | **Total Training** | <5 hours | ~50+ hours | **10x faster** |
-| **GPU Memory** | 28-32 GB | 60-80 GB | **2x more efficient** |
 | **Model Size** | 285 MB | 1+ GB | **3.5x smaller** |
 | **Inference Speed** | 30 FPS (laptop) | 5-10 FPS | **3-6x faster** |
 | **Training Cost** | ~$20 | ~$200+ | **10x cheaper** |
-| **Action Accuracy** | 35% | ~42-48% | Comparable |
 
 ## Model Architecture
 
